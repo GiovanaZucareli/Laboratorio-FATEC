@@ -1,9 +1,13 @@
 package com.example.atividade2;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class TelaCachorro extends Application {
@@ -41,6 +45,21 @@ public class TelaCachorro extends Application {
         resultado.setEditable(false);
         resultado.setPrefHeight(100);
 
+        // Carregando a imagem do cachorro
+        Image cachorroImage = new Image(getClass().getResourceAsStream("/cachorro.jpg"));
+        ImageView cachorroImageView = new ImageView(cachorroImage);
+
+        // Redimensionando e arredondando a imagem
+        double imageWidth = 250;
+        double imageHeight = 150;
+        cachorroImageView.setFitWidth(imageWidth);
+        cachorroImageView.setFitHeight(imageHeight);
+
+        Rectangle clip = new Rectangle(imageWidth, imageHeight);
+        clip.setArcWidth(30);
+        clip.setArcHeight(30);
+        cachorroImageView.setClip(clip);
+
         // Botão Criar Cachorro
         btnCriar.setOnAction(e -> {
             try {
@@ -63,7 +82,9 @@ public class TelaCachorro extends Application {
         btnLatir.setOnAction(e -> resultado.setText(cachorro.latir()));
         btnAbanar.setOnAction(e -> resultado.setText(cachorro.abanarRabo()));
 
-        VBox layout = new VBox(10,
+        // Organizando o layout
+        VBox layout = new VBox(15,
+                cachorroImageView,  // Adicionando a imagem do cachorro no topo
                 new Label("Raça:"), txtRaca,
                 new Label("Idade:"), txtIdade,
                 new Label("Cor:"), txtCor,
@@ -71,8 +92,13 @@ public class TelaCachorro extends Application {
                 resultado
         );
         layout.setPadding(new javafx.geometry.Insets(15));
+        layout.setAlignment(Pos.CENTER);
 
-        stage.setScene(new Scene(layout, 400, 400));
+        // Aplicando a folha de estilo para a tela Cachorro
+        Scene scene = new Scene(layout, 300, 700);
+        scene.getStylesheets().add(getClass().getResource("/estiloCachorro.css").toExternalForm());
+
+        stage.setScene(scene);
         stage.setTitle("Cadastro de Cachorro");
         stage.show();
     }

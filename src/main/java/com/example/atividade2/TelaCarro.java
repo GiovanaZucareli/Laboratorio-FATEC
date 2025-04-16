@@ -1,9 +1,13 @@
 package com.example.atividade2;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class TelaCarro extends Application {
@@ -17,6 +21,7 @@ public class TelaCarro extends Application {
     @Override
     public void start(Stage stage) {
 
+        // Campos de entrada
         TextField txtMarca = new TextField();
         txtMarca.setPromptText("Marca");
 
@@ -31,6 +36,7 @@ public class TelaCarro extends Application {
         Button btnFrear = new Button("Frear");
         Button btnVirar = new Button("Virar");
 
+        // Desabilita os botões de ação até o carro ser criado
         btnAcelerar.setDisable(true);
         btnFrear.setDisable(true);
         btnVirar.setDisable(true);
@@ -39,6 +45,22 @@ public class TelaCarro extends Application {
         resultado.setEditable(false);
         resultado.setPrefHeight(100);
 
+        // Carregando a imagem do carro
+        Image carroImage = new Image(getClass().getResourceAsStream("/carro.jpg"));
+        ImageView carroImageView = new ImageView(carroImage);
+
+        // Redimensionando e arredondando a imagem
+        double imageWidth = 250;
+        double imageHeight = 150;
+        carroImageView.setFitWidth(imageWidth);
+        carroImageView.setFitHeight(imageHeight);
+
+        Rectangle clip = new Rectangle(imageWidth, imageHeight);
+        clip.setArcWidth(30);
+        clip.setArcHeight(30);
+        carroImageView.setClip(clip);
+
+        // Botão Criar Carro
         btnCriar.setOnAction(e -> {
             try {
                 String marca = txtMarca.getText();
@@ -55,21 +77,28 @@ public class TelaCarro extends Application {
             }
         });
 
+        // Botões de ação
         btnAcelerar.setOnAction(e -> resultado.setText(carro.acelerar()));
         btnFrear.setOnAction(e -> resultado.setText(carro.frear()));
         btnVirar.setOnAction(e -> resultado.setText(carro.virar()));
 
-        VBox layout = new VBox(10,
+        // Organizando o layout
+        VBox layout = new VBox(15,
+                carroImageView,  // Adicionando a imagem do carro no topo
                 new Label("Marca:"), txtMarca,
                 new Label("Cor:"), txtCor,
                 new Label("Velocidade atual (km/h):"), txtVelocidade,
                 btnCriar, new HBox(10, btnAcelerar, btnFrear, btnVirar),
                 resultado
         );
-
         layout.setPadding(new javafx.geometry.Insets(15));
+        layout.setAlignment(Pos.CENTER);
 
-        stage.setScene(new Scene(layout, 400, 400));
+        // Aplicando a folha de estilo para a tela Carro
+        Scene scene = new Scene(layout, 600, 600);
+        scene.getStylesheets().add(getClass().getResource("/estiloCarro.css").toExternalForm());
+
+        stage.setScene(scene);
         stage.setTitle("Cadastro de Carro");
         stage.show();
     }
