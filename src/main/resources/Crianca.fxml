@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CriancaController">
+    <children>
+        <VBox prefHeight="400.0" prefWidth="600.0">
+            <children>
+                <Label text="Cadastro de Crianças">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label text="Gerencie as crianças cadastrados" />
+                <GridPane hgap="10" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints prefWidth="100.0" />
+                        <ColumnConstraints prefWidth="200.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints prefHeight="30.0" />
+                        <RowConstraints prefHeight="30.0" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="Nome" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <Label text="Idade" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+
+                        <TextField fx:id="nomeField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <TextField fx:id="idadeField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    </children>
+                </GridPane>
+                <HBox alignment="CENTER" spacing="10">
+                    <children>
+                        <Button onAction="#limparCampos" text="Cancelar" />
+                        <Button onAction="#salvarCrianca" text="Salvar" />
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>
