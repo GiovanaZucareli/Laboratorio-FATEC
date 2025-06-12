@@ -3,37 +3,56 @@ package Classes;
 public class Passaro {
 
     private int idPassaro;
-    private String cor;
+    private String nome;
+    private int idade;
     private String especie;
+    private String cor;
 
-    public Passaro (int idPassaro, String cor, String especie) {
+    public Passaro(int idPassaro, String nome, int idade, String especie, String cor) {
         this.idPassaro = idPassaro;
-        this.cor = cor;
+        this.nome = nome;
+        this.idade = idade;
         this.especie = especie;
+        this.cor = cor;
     }
 
     public int getIdPassaro() {
         return idPassaro;
     }
 
-    public void setIdPassaro (int idPassaro) {
+    public void setIdPassaro(int idPassaro) {
         this.idPassaro = idPassaro;
     }
 
-    public String getcor() {
-        return cor;
+    public String getNome() {
+        return nome;
     }
 
-    public void setcor (String cor) {
-        this.cor = cor;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getespecie() {
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    public String getEspecie() {
         return especie;
     }
 
-    public void setespecie (String especie) {
+    public void setEspecie(String especie) {
         this.especie = especie;
     }
-    
+
+    public String getCor() {
+        return cor;
+    }
+
+    public void setCor(String cor) {
+        this.cor = cor;
+    }
 }

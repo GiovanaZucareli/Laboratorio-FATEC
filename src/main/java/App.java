@@ -15,10 +15,11 @@ public class App extends Application {
     @Override
 
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Passaro"), 1200, 600);
+        scene = new Scene(loadFXML("Cachorro"), 1200, 600);
         stage.setScene(scene);
         stage.show();
-        //scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+
+        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
     }
 
     public static void setRoot(String fxml) throws IOException {
